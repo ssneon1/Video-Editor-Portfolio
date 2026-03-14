@@ -24,6 +24,48 @@ export default function YouTubeVideos() {
       img: "https://img.youtube.com/vi/Q9BXw1pUkPw/maxresdefault.jpg",
       link: "https://www.youtube.com/watch?v=Q9BXw1pUkPw"
     },
+    {
+      title: "Bhoot Didi Ko Main Pasand Aa Gaya… Bar Bar Pakad Lati Hai | Home Sweet Home Funny Highlight",
+      channel: "NineAsh",
+      tag: "Funny Highlight",
+      img: "https://img.youtube.com/vi/MVVB03IfI1E/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=MVVB03IfI1E&t=241s"
+    },
+    {
+      title: "Teamwork Ya Full Tatti? Ft. @ClotLive & @Namelesss_69 😅 || PEAK Game Funny Highlight Part 2",
+      channel: "NineAsh",
+      tag: "Funny Highlight",
+      img: "https://img.youtube.com/vi/R7xQfaQwsxs/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=R7xQfaQwsxs&t=22s"
+    },
+    {
+      title: "4 Hilarious Idiots Play Buckshot Roulette | Epic Fail & Laughs Guaranteed!",
+      channel: "NineAsh",
+      tag: "Buckshot Roulette",
+      img: "https://img.youtube.com/vi/IPzw3YtXMY4/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=IPzw3YtXMY4"
+    },
+    {
+      title: "GTA 5: I Tried to Teach English to My Subscribers… BIG MISTAKE 😭📖",
+      channel: "NineAsh",
+      tag: "GTA 5",
+      img: "https://img.youtube.com/vi/pDOUA0-5ST8/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=pDOUA0-5ST8&t=111s"
+    },
+    {
+      title: "Best Funny Horror Game Ever",
+      channel: "NineAsh",
+      tag: "Horror",
+      img: "https://img.youtube.com/vi/X1WnOw09D44/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=X1WnOw09D44"
+    },
+    {
+      title: "The Trash Trio With Trash Gameplay || Valorant Funny Moments",
+      channel: "NineAsh",
+      tag: "Valorant",
+      img: "https://img.youtube.com/vi/alpvpINGlm8/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=alpvpINGlm8&t=80s"
+    },
   ];
 
   return (

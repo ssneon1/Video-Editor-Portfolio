@@ -1,25 +1,68 @@
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, Twitch } from 'lucide-react';
 
 export default function StreamHighlights() {
   const highlights = [
-    { title: "Insane Clutch vs Pro Team | Valorant", game: "Valorant", views: "120K Views", duration: "10:15", img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800" },
-    { title: "Funniest Moments of the Year", game: "Just Chatting", views: "450K Views", duration: "14:20", img: "https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&q=80&w=800" },
-    { title: "Reaching Predator Rank in ONE STREAM", game: "Apex Legends", views: "300K Views", duration: "12:05", img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800" },
-    { title: "My First Time Playing Elden Ring", game: "Elden Ring", views: "550K Views", duration: "18:40", img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=800" },
-    { title: "Minecraft Hardcore but it's Chaos", game: "Minecraft", views: "890K Views", duration: "14:50", img: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?auto=format&fit=crop&q=80&w=800" },
-    { title: "GTA RP Heist Goes Terribly WRONG", game: "GTA V", views: "1.1M Views", duration: "15:20", img: "https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&q=80&w=800" }
+    {
+      title: "FUNNIEST BANK ROBBERY EVER GTA 5 Roleplay - BANK ROBBERS vs COPS",
+      videoId: "GT3WxhzBBIE",
+      startAt: 254,
+      tag: "GTA 5 RP",
+      channel: "NineAsh",
+    },
+    {
+      title: "Funniest Valorant Moments That Will Make You Laugh",
+      videoId: "k1IiV988LTI",
+      startAt: 0,
+      tag: "Valorant",
+      channel: "NineAsh",
+    },
+    {
+      title: "GTA 5 Epic Funny Moment & Epic Fail || DRP Ash Manjiro Clips",
+      videoId: "-OtAKAqHvb8",
+      startAt: 0,
+      tag: "GTA 5",
+      channel: "NineAsh",
+    },
+    {
+      title: "4 Hilarious Idiots Play Buckshot Roulette | Epic Fail & Laughs Guaranteed!",
+      videoId: "IPzw3YtXMY4",
+      startAt: 0,
+      tag: "Buckshot Roulette",
+      channel: "NineAsh",
+    },
+    {
+      title: "GTA 5: I Tried to Teach English to My Subscribers… BIG MISTAKE 😭📖",
+      videoId: "pDOUA0-5ST8",
+      startAt: 111,
+      tag: "GTA 5",
+      channel: "NineAsh",
+    },
+    {
+      title: "Best Funny Horror Game Ever",
+      videoId: "X1WnOw09D44",
+      startAt: 0,
+      tag: "Horror",
+      channel: "NineAsh",
+    },
+    {
+      title: "The Trash Trio With Trash Gameplay || Valorant Funny Moments",
+      videoId: "alpvpINGlm8",
+      startAt: 80,
+      tag: "Valorant",
+      channel: "NineAsh",
+    },
   ];
 
   return (
     <div className="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-16 text-center"
       >
         <span className="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-widest text-[#9146FF] uppercase border border-[#9146FF]/30 bg-[#9146FF]/10 rounded-full">
-          Twitch & Kick
+          Twitch &amp; Kick
         </span>
         <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
           Stream <span className="text-[#9146FF]">Highlights</span>
@@ -30,32 +73,57 @@ export default function StreamHighlights() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {highlights.map((highlight, i) => (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.1 }}
-            key={i} 
-            className="group cursor-pointer"
-          >
-            <div className="relative aspect-video rounded-xl overflow-hidden mb-4 bg-zinc-900 border border-white/5">
-              <img src={highlight.img} alt={highlight.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-x-0 bottom-0 top-0 bg-[#9146FF]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <div className="w-16 h-16 bg-[#9146FF] rounded-full flex items-center justify-center text-white transform scale-90 group-hover:scale-100 transition-transform shadow-xl shadow-[#9146FF]/50">
-                  <Play fill="white" />
+        {highlights.map((highlight, i) => {
+          const thumbUrl = `https://img.youtube.com/vi/${highlight.videoId}/maxresdefault.jpg`;
+          const watchUrl = highlight.startAt
+            ? `https://www.youtube.com/watch?v=${highlight.videoId}&t=${highlight.startAt}s`
+            : `https://www.youtube.com/watch?v=${highlight.videoId}`;
+
+          return (
+            <motion.a
+              href={watchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              key={i}
+              className="group cursor-pointer block bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 hover:border-[#9146FF]/40 transition-colors"
+            >
+              {/* Thumbnail */}
+              <div className="relative aspect-video overflow-hidden bg-black">
+                <img
+                  src={thumbUrl}
+                  alt={highlight.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                {/* Dark overlay + play button on hover */}
+                <div className="absolute inset-0 bg-[#9146FF]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="w-16 h-16 bg-[#9146FF] rounded-full flex items-center justify-center text-white transform scale-90 group-hover:scale-100 transition-transform shadow-xl shadow-[#9146FF]/50">
+                    <Play fill="white" size={24} className="ml-1" />
+                  </div>
+                </div>
+                {/* Tag badge */}
+                <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#9146FF] border border-[#9146FF]/30">
+                  {highlight.tag}
                 </div>
               </div>
-              <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-xs font-bold rounded text-white">
-                {highlight.duration}
+
+              {/* Info row — mimics YouTube card */}
+              <div className="p-4 flex gap-3">
+                <div className="w-9 h-9 rounded-full bg-[#9146FF] flex items-center justify-center shrink-0 mt-0.5">
+                  <Twitch size={16} className="text-white" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-[#9146FF] transition-colors">
+                    {highlight.title}
+                  </h3>
+                  <p className="text-xs text-zinc-500 mt-1 font-medium">{highlight.channel} • Stream Edit</p>
+                </div>
               </div>
-              <div className="absolute top-2 left-2 bg-[#9146FF] px-2 py-1 text-xs font-bold rounded text-white">
-                {highlight.game}
-              </div>
-            </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-[#9146FF] transition-colors line-clamp-2">{highlight.title}</h3>
-            <p className="text-sm text-gray-500 mt-1">{highlight.views} • Dynamic zooming, subtitles & SFX.</p>
-          </motion.div>
-        ))}
+            </motion.a>
+          );
+        })}
       </div>
     </div>
   );
