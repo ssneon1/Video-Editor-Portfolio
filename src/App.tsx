@@ -5,6 +5,7 @@ import YouTubeVideos from './pages/YouTubeVideos';
 import StreamHighlights from './pages/StreamHighlights';
 import ShortFormContent from './pages/ShortFormContent';
 import GamingMontages from './pages/GamingMontages';
+import Success from './pages/Success';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="stream-highlights" element={<StreamHighlights />} />
           <Route path="short-form-content" element={<ShortFormContent />} />
           <Route path="gaming-montages" element={<GamingMontages />} />
+          <Route path="success" element={<Success />} />
         </Route>
       </Routes>
     </Router>

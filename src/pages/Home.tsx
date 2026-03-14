@@ -15,7 +15,8 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 // @ts-ignore
 import profileImg from '../utils/IMG_0003_1 (1).JPG';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // ─────────────────────────────────────────────
 // Reusable scroll-reveal wrapper
@@ -379,100 +380,132 @@ const AIWorkflow = () => {
 // ─────────────────────────────────────────────
 // Contact
 // ─────────────────────────────────────────────
-const Contact = () => (
-  <section id="contact" className="py-28 bg-black border-t border-white/5">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid md:grid-cols-2 gap-16">
-        <Reveal>
-          <div>
-            <h2 className="text-5xl font-black text-white mb-8">LET'S <span className="text-red-600 italic">TALK</span></h2>
-            <p className="text-gray-400 text-lg mb-10">
-              Interested in working together on your next project? I'm ready to bring your vision to life with professional editing.
-            </p>
-            <div className="space-y-6">
-              <a href="https://www.youtube.com/@NineAsh7" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Youtube className="text-white" /></div>
-                <div>
-                  <p className="text-zinc-500 text-xs font-bold uppercase">YouTube</p>
-                  <p className="text-white font-bold group-hover:text-red-500 transition-colors">@NineAsh7</p>
+const Contact = () => {
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mqeydkab", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        navigate('/success');
+      } else {
+        alert("Oops! There was a problem submitting your form. Please try again.");
+      }
+    } catch (error) {
+      alert("Oops! There was a problem submitting your form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <section id="contact" className="py-28 bg-black border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-16">
+          <Reveal>
+            <div>
+              <h2 className="text-5xl font-black text-white mb-8">LET'S <span className="text-red-600 italic">TALK</span></h2>
+              <p className="text-gray-400 text-lg mb-10">
+                Interested in working together on your next project? I'm ready to bring your vision to life with professional editing.
+              </p>
+              <div className="space-y-6">
+                <a href="https://www.youtube.com/@NineAsh7" className="flex items-center gap-4 group">
+                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Youtube className="text-white" /></div>
+                  <div>
+                    <p className="text-zinc-500 text-xs font-bold uppercase">YouTube</p>
+                    <p className="text-white font-bold group-hover:text-red-500 transition-colors">@NineAsh7</p>
+                  </div>
+                </a>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><MessageSquare className="text-white" /></div>
+                  <div>
+                    <p className="text-zinc-500 text-xs font-bold uppercase">Discord</p>
+                    <p className="text-white font-bold group-hover:text-indigo-400 transition-colors">Join Server</p>
+                  </div>
                 </div>
-              </a>
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><MessageSquare className="text-white" /></div>
-                <div>
-                  <p className="text-zinc-500 text-xs font-bold uppercase">Discord</p>
-                  <p className="text-white font-bold group-hover:text-indigo-400 transition-colors">Join Server</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Mail className="text-black" /></div>
-                <div>
-                  <p className="text-zinc-500 text-xs font-bold uppercase">Email</p>
-                  <p className="text-white font-bold group-hover:text-red-500 transition-colors">contact@nineash.com</p>
+                <div className="flex items-center gap-4 group cursor-pointer">
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Mail className="text-black" /></div>
+                  <div>
+                    <p className="text-zinc-500 text-xs font-bold uppercase">Email</p>
+                    <p className="text-white font-bold group-hover:text-red-500 transition-colors">contact@nineash.com</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        <Reveal delay={0.15}>
-          <form
-            action="https://formspree.io/f/xpqyjzzn"
-            method="POST"
-            className="bg-zinc-900 p-8 rounded-3xl space-y-4"
-          >
-            <div className="grid grid-cols-2 gap-4">
+          <Reveal delay={0.15}>
+            <form
+              onSubmit={handleSubmit}
+              className="bg-zinc-900 p-8 rounded-3xl space-y-4"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-zinc-500 uppercase px-2">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
+                    placeholder="Your Name"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-zinc-500 uppercase px-2">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
+                    placeholder="Email Address"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold text-zinc-500 uppercase px-2">Name</label>
+                <label className="text-xs font-bold text-zinc-500 uppercase px-2">Project Type</label>
                 <input
                   type="text"
-                  name="name"
-                  required
+                  name="projectType"
                   className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
-                  placeholder="Your Name"
+                  placeholder="e.g. Gaming Montage, YouTube Script"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-bold text-zinc-500 uppercase px-2">Email</label>
-                <input
-                  type="email"
-                  name="email"
+                <label className="text-xs font-bold text-zinc-500 uppercase px-2">Message</label>
+                <textarea
+                  name="message"
                   required
-                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
-                  placeholder="Email Address"
+                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors h-32"
+                  placeholder="Tell me about your project..."
                 />
               </div>
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-zinc-500 uppercase px-2">Project Type</label>
-              <input
-                type="text"
-                name="projectType"
-                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
-                placeholder="e.g. Gaming Montage, YouTube Script"
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-zinc-500 uppercase px-2">Message</label>
-              <textarea
-                name="message"
-                required
-                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors h-32"
-                placeholder="Tell me about your project..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full py-4 bg-red-600 text-white font-black rounded-xl hover:bg-red-700 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-red-600/20"
-            >
-              SEND MESSAGE
-            </button>
-          </form>
-        </Reveal>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-4 ${isSubmitting ? 'bg-zinc-700 cursor-not-allowed' : 'bg-red-600 hover:bg-red-700'} text-white font-black rounded-xl transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-red-600/20`}
+              >
+                {isSubmitting ? 'SENDING...' : 'SEND MESSAGE'}
+              </button>
+            </form>
+          </Reveal>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // ─────────────────────────────────────────────
 // Page
