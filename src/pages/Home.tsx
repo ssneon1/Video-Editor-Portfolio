@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+// @ts-ignore
+import profileImg from '../utils/IMG_0003_1 (1).JPG';
 import { useRef } from 'react';
 
 // ─────────────────────────────────────────────
@@ -113,11 +115,12 @@ const About = () => (
             <div className="aspect-square rounded-lg overflow-hidden border border-white/10 bg-zinc-900 group">
               <div className="absolute inset-0 bg-red-600/20 mix-blend-overlay group-hover:opacity-0 transition-opacity" />
               <img
-                src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=1000"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                src={profileImg}
+                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                 alt="NineAsh"
               />
             </div>
+            <div className="absolute inset-0 rounded-lg group-hover:shadow-[0_0_30px_rgba(220,38,38,0.2)] pointer-events-none transition-all duration-700" />
             <div className="absolute -bottom-6 -right-6 bg-red-600 p-8 rounded-lg shadow-xl hidden lg:block">
               <p className="text-4xl font-black text-white">400+</p>
               <p className="text-sm font-bold text-white/80 uppercase tracking-tighter">Videos Edited</p>
