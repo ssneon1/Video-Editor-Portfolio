@@ -1,19 +1,34 @@
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, Youtube } from 'lucide-react';
 
 export default function YouTubeVideos() {
   const videos = [
-    { title: "The Ultimate Guide to Editing", views: "1.2M Views", duration: "10:24", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800" },
-    { title: "Insane Setup Tour 2026", views: "850K Views", duration: "14:15", img: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&q=80&w=800" },
-    { title: "React vs Vue: The Truth", views: "500K Views", duration: "08:42", img: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&q=80&w=800" },
-    { title: "Day in the Life of a Video Editor", views: "2.1M Views", duration: "18:30", img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800" },
-    { title: "Top 5 Cinematic Effects", views: "340K Views", duration: "05:55", img: "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=800" },
-    { title: "How to Grow Fast on YouTube", views: "4.5M Views", duration: "12:00", img: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80&w=800" },
+    {
+      title: "Carry The Glass With My Brother Full Chaos",
+      channel: "NineAsh",
+      tag: "Gameplay",
+      img: "https://img.youtube.com/vi/cAdjtQYsNHY/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=cAdjtQYsNHY&t=14s"
+    },
+    {
+      title: "Bullied @ABHI9AV So Hard... He Uninstalled the Game 😂🔥 | ft. @ParagGaurr @HarshitPlaysofficial",
+      channel: "NineAsh",
+      tag: "Funny Moments",
+      img: "https://img.youtube.com/vi/QrX5L68ulLc/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=QrX5L68ulLc&t=17s"
+    },
+    {
+      title: "Valorant Montage - Big Dawgs 🔥",
+      channel: "NineAsh",
+      tag: "Montage",
+      img: "https://img.youtube.com/vi/Q9BXw1pUkPw/maxresdefault.jpg",
+      link: "https://www.youtube.com/watch?v=Q9BXw1pUkPw"
+    },
   ];
 
   return (
     <div className="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto min-h-screen">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-16 text-center"
@@ -31,27 +46,48 @@ export default function YouTubeVideos() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {videos.map((video, i) => (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.1 }}
-            key={i} 
-            className="group cursor-pointer"
+          <motion.a
+            href={video.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            key={i}
+            className="group cursor-pointer block bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 hover:border-red-600/40 transition-colors"
           >
-            <div className="relative aspect-video rounded-xl overflow-hidden mb-4 bg-zinc-900 border border-white/5">
-              <img src={video.img} alt={video.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute inset-x-0 bottom-0 top-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white transform scale-90 group-hover:scale-100 transition-transform">
-                  <Play fill="white" />
+            {/* Thumbnail */}
+            <div className="relative aspect-video overflow-hidden bg-black">
+              <img
+                src={video.img}
+                alt={video.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              {/* Dark overlay + play button on hover */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white transform scale-90 group-hover:scale-100 transition-transform shadow-xl shadow-red-600/30">
+                  <Play fill="white" size={24} className="ml-1" />
                 </div>
               </div>
-              <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-1 text-xs font-bold rounded text-white">
-                {video.duration}
+              {/* Tag badge */}
+              <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-red-400 border border-red-600/30">
+                {video.tag}
               </div>
             </div>
-            <h3 className="text-lg font-bold text-white group-hover:text-red-500 transition-colors line-clamp-2">{video.title}</h3>
-            <p className="text-sm text-gray-500 mt-1">{video.views} • Edited accurately to match the brand.</p>
-          </motion.div>
+
+            {/* Info row — mimics YouTube card */}
+            <div className="p-4 flex gap-3">
+              <div className="w-9 h-9 rounded-full bg-red-600 flex items-center justify-center shrink-0 mt-0.5">
+                <Youtube size={16} className="text-white" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-sm font-bold text-white leading-snug line-clamp-2 group-hover:text-red-400 transition-colors">
+                  {video.title}
+                </h3>
+                <p className="text-xs text-zinc-500 mt-1 font-medium">{video.channel} • NineAsh7</p>
+              </div>
+            </div>
+          </motion.a>
         ))}
       </div>
     </div>
