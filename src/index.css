@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes bg-pan {
+  0%   { transform: scale(1.15) translate(0%, 0%); }
+  25%  { transform: scale(1.2) translate(-2%, -1%); }
+  50%  { transform: scale(1.15) translate(-4%, 0%); }
+  75%  { transform: scale(1.2) translate(-2%, 1%); }
+  100% { transform: scale(1.15) translate(0%, 0%); }
+}
+
+.animate-bg-pan {
+  animation: bg-pan 20s ease-in-out infinite;
+}
