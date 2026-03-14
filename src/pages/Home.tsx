@@ -1,11 +1,11 @@
-import { 
-  Play, 
-  Video, 
-  Youtube, 
-  Layers, 
-  Zap, 
-  Cpu, 
-  Mail, 
+import {
+  Play,
+  Video,
+  Youtube,
+  Layers,
+  Zap,
+  Cpu,
+  Mail,
   MessageSquare,
   ExternalLink,
   Clock,
@@ -416,30 +416,55 @@ const Contact = () => (
         </Reveal>
 
         <Reveal delay={0.15}>
-          <form className="bg-zinc-900 p-8 rounded-3xl space-y-4">
+          <form
+            action="https://formspree.io/f/xpqyjzzn"
+            method="POST"
+            className="bg-zinc-900 p-8 rounded-3xl space-y-4"
+          >
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-zinc-500 uppercase px-2">Name</label>
-                <input type="text" className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Your Name" />
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
+                  placeholder="Your Name"
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-bold text-zinc-500 uppercase px-2">Email</label>
-                <input type="email" className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Email Address" />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
+                  placeholder="Email Address"
+                />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-zinc-500 uppercase px-2">Project Type</label>
-              <input 
-                type="text" 
-                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors" 
-                placeholder="e.g. Gaming Montage, YouTube Script" 
+              <input
+                type="text"
+                name="projectType"
+                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors"
+                placeholder="e.g. Gaming Montage, YouTube Script"
               />
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-zinc-500 uppercase px-2">Message</label>
-              <textarea className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors h-32" placeholder="Tell me about your project..." />
+              <textarea
+                name="message"
+                required
+                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors h-32"
+                placeholder="Tell me about your project..."
+              />
             </div>
-            <button className="w-full py-4 bg-red-600 text-white font-black rounded-xl hover:bg-red-700 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-red-600/20">
+            <button
+              type="submit"
+              className="w-full py-4 bg-red-600 text-white font-black rounded-xl hover:bg-red-700 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-red-600/20"
+            >
               SEND MESSAGE
             </button>
           </form>
