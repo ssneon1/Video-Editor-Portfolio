@@ -141,9 +141,9 @@ const About = () => (
           </Reveal>
           <Reveal delay={0.1}>
             <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
-              <p>I'm a passionate video editor and content creator specializing in gaming edits, cinematic montages, and engaging YouTube content.</p>
-              <p>With experience editing 400+ videos, I focus on creating fast-paced, high-energy content that keeps viewers engaged. My workflow combines professional editing software and AI-powered tools to produce smooth transitions, advanced motion graphics, and cinematic storytelling.</p>
-              <p>From gaming montages and stream highlights to short-form social media edits, I aim to transform raw gameplay footage into visually powerful content that captures attention and boosts viewer retention.</p>
+              <p>I’m a passionate Video Editor and Content Creator specializing in gaming edits, cinematic montages, and engaging YouTube content.</p>
+              <p>With experience editing 400+ videos, I focus on crafting fast-paced, high-energy content that captures attention and keeps viewers engaged from start to finish. My workflow combines professional editing software and AI-powered tools to deliver seamless transitions, advanced motion graphics, and cinematic storytelling</p>
+              <p>From gaming montages and stream highlights to short-form social media edits, I transform raw gameplay footage into visually powerful, entertaining content designed to boost viewer engagement and retention.</p>
             </div>
           </Reveal>
           <Reveal delay={0.2}>
@@ -307,7 +307,7 @@ const Portfolio = () => {
 // ─────────────────────────────────────────────
 const CaseStudySection = () => {
   const [activeTab, setActiveTab] = useState(0);
-  
+
   // Real YouTube video IDs for easy reference
   // 1. Among Us Epic Trolled  → Wfna8A2OaVU
   // 2. Triggered Insaan collab → use same channel videos
@@ -409,11 +409,10 @@ const CaseStudySection = () => {
             <button
               key={p.id}
               onClick={() => setActiveTab(i)}
-              className={`px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 border ${
-                activeTab === i 
-                  ? "bg-red-600 border-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]" 
+              className={`px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 border ${activeTab === i
+                  ? "bg-red-600 border-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]"
                   : "bg-zinc-900 border-white/10 text-zinc-400 hover:border-white/30"
-              }`}
+                }`}
             >
               {p.category}
             </button>
@@ -487,7 +486,7 @@ const CaseStudySection = () => {
               className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group ring-1 ring-white/10 block"
             >
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1 }}
                   className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(220,38,38,0.5)]"
                 >
@@ -507,8 +506,8 @@ const CaseStudySection = () => {
             <div className="grid grid-cols-3 gap-4">
               {current.frames.map((src, i) => (
                 <a key={i} href={current.videoUrl} target="_blank" rel="noopener noreferrer" className="aspect-video bg-zinc-800 rounded-xl overflow-hidden border border-white/5 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer block">
-                  <img 
-                    src={src} 
+                  <img
+                    src={src}
                     className="w-full h-full object-cover"
                     alt={`Scene ${i + 1}`}
                   />
