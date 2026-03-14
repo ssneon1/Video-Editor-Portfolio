@@ -618,13 +618,13 @@ const Contact = () => {
                     <p className="text-white font-bold group-hover:text-red-500 transition-colors">@NineAsh7</p>
                   </div>
                 </a>
-                <div className="flex items-center gap-4 group cursor-pointer">
+                <a href="https://discord.gg/hbvR8Naw" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                   <div className="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><MessageSquare className="text-white" /></div>
                   <div>
                     <p className="text-zinc-500 text-xs font-bold uppercase">Discord</p>
                     <p className="text-white font-bold group-hover:text-indigo-400 transition-colors">Join Server</p>
                   </div>
-                </div>
+                </a>
                 <div className="flex items-center gap-4 group cursor-pointer">
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Mail className="text-black" /></div>
                   <div>
