@@ -9,7 +9,13 @@ import {
   MessageSquare,
   ExternalLink,
   Clock,
-  Scissors
+  Scissors,
+  Target,
+  Trophy,
+  History,
+  CheckCircle2,
+  TrendingUp,
+  ArrowRight
 } from 'lucide-react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -288,48 +294,231 @@ const Portfolio = () => {
           ))}
         </div>
 
-        <Reveal delay={0.1} className="mt-20">
-          <div className="bg-zinc-900/50 border border-white/5 p-8 rounded-3xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <span className="text-red-600 font-bold text-sm tracking-widest uppercase mb-4 block">Case Study</span>
-                <h3 className="text-3xl font-black text-white mb-6 leading-tight">Project: GTA RP Heist Highlight</h3>
-                <p className="text-gray-400 mb-8 italic">
-                  "For this project, I edited a high-intensity roleplay heist sequence using advanced pacing and sound design techniques."
-                </p>
-                <ul className="space-y-4">
-                  {[
-                    "Synced multiple gameplay angles",
-                    "Added motion-tracked callouts",
-                    "Used cinematic sound effects to build tension",
-                    "Applied dynamic cuts to maintain viewer engagement"
-                  ].map((step, i) => (
-                    <li key={i} className="flex items-center gap-3 text-white font-medium">
-                      <Scissors className="text-red-600" size={18} />{step}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 p-4 bg-green-600/10 border border-green-600/30 rounded-lg">
-                  <p className="text-green-500 text-sm font-bold">RESULT: Increased viewer retention and high engagement during key moments.</p>
-                </div>
-              </div>
-              <div className="aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative group cursor-pointer">
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                    <Play fill="white" />
-                  </div>
-                </div>
-                <img
-                  src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&q=80&w=1000"
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity"
-                  alt="GTA RP Project"
-                />
-              </div>
-            </div>
-          </div>
+        <Reveal delay={0.1} className="mt-24">
+          <CaseStudySection />
         </Reveal>
       </div>
     </section>
+  );
+};
+
+// ─────────────────────────────────────────────
+// Case Study Section
+// ─────────────────────────────────────────────
+const CaseStudySection = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  
+  // Real YouTube video IDs for easy reference
+  // 1. Among Us Epic Trolled  → Wfna8A2OaVU
+  // 2. Triggered Insaan collab → use same channel videos
+  const projects = [
+    {
+      id: "gaming",
+      category: "Gaming Montage",
+      title: "Among Us: Epic Trolled",
+      testimonial: "Edited a high-stakes Among Us session with @triggeredinsaan — focusing on psychological tension, comedic timing, and custom VFX.",
+      challenge: "Balancing intense social deduction gameplay with the humor of creators' reactions across a 28-minute long-form video.",
+      solution: "Used custom dynamic name tags, reaction zooms to emphasize player emotions, and suspenseful soundscapes for nail-biting voting rounds.",
+      steps: [
+        "Multi-POV synchronization",
+        "Motion-tracked name tags",
+        "Reaction zoom timing",
+        "Custom meme VFX integration"
+      ],
+      metrics: [
+        { label: "Views", value: "2.4K", icon: <TrendingUp size={16} /> },
+        { label: "Avg View Time", value: "18:05", icon: <Clock size={16} /> },
+        { label: "Engagement", value: "15%", icon: <Target size={16} /> }
+      ],
+      image: "https://img.youtube.com/vi/Wfna8A2OaVU/maxresdefault.jpg",
+      videoUrl: "https://youtu.be/Wfna8A2OaVU",
+      frames: [
+        "https://img.youtube.com/vi/Wfna8A2OaVU/1.jpg",
+        "https://img.youtube.com/vi/Wfna8A2OaVU/2.jpg",
+        "https://img.youtube.com/vi/Wfna8A2OaVU/3.jpg"
+      ]
+    },
+    {
+      id: "youtube",
+      category: "Documentary YouTube",
+      title: "Minecraft With Beggars",
+      testimonial: "Edited a viral Minecraft social experiment with comedic pacing and sharp cuts that kept viewers hooked till the last second.",
+      challenge: "Turning hours of unscripted gameplay into a tightly-paced 15-minute story with clear comedic beats and emotional payoffs.",
+      solution: "Used reaction cutaways, animated text overlays, and contrast sound design to accentuate every comedic moment.",
+      steps: [
+        "Story-driven scripted pacing",
+        "Animated text callouts",
+        "Reaction cutaway edits",
+        "Energetic music scoring"
+      ],
+      metrics: [
+        { label: "Total Views", value: "1.4M", icon: <TrendingUp size={16} /> },
+        { label: "New Subs", value: "12K", icon: <Trophy size={16} /> },
+        { label: "Retention", value: "67%", icon: <History size={16} /> }
+      ],
+      image: "https://img.youtube.com/vi/kRgEVkF-DZk/maxresdefault.jpg",
+      videoUrl: "https://youtu.be/kRgEVkF-DZk",
+      frames: [
+        "https://img.youtube.com/vi/kRgEVkF-DZk/1.jpg",
+        "https://img.youtube.com/vi/kRgEVkF-DZk/2.jpg",
+        "https://img.youtube.com/vi/kRgEVkF-DZk/3.jpg"
+      ]
+    },
+    {
+      id: "shortform",
+      category: "Short Form Content",
+      title: "GTA RP Heist Highlight",
+      testimonial: "Edited a high-intensity GTA RP heist sequence — showcasing advanced pacing and cinematic sound design in short-form format.",
+      challenge: "Condensing a 40-minute roleplay session into a punchy 60-second vertical clip without losing any of the tension.",
+      solution: "Used rapid-cut POV switches, bass-drop synced cuts, and animated location callouts to keep every second counting.",
+      steps: [
+        "60-second hook-first edit",
+        "POV switch system",
+        "Motion-tracked callouts",
+        "Bass-drop sync cuts"
+      ],
+      metrics: [
+        { label: "Shares", value: "28K", icon: <TrendingUp size={16} /> },
+        { label: "Completion", value: "89%", icon: <CheckCircle2 size={16} /> },
+        { label: "Engagement", value: "21%", icon: <Target size={16} /> }
+      ],
+      image: "https://img.youtube.com/vi/QrX5L68ulLc/maxresdefault.jpg",
+      videoUrl: "https://youtu.be/QrX5L68ulLc",
+      frames: [
+        "https://img.youtube.com/vi/QrX5L68ulLc/1.jpg",
+        "https://img.youtube.com/vi/QrX5L68ulLc/2.jpg",
+        "https://img.youtube.com/vi/QrX5L68ulLc/3.jpg"
+      ]
+    }
+  ];
+
+  const current = projects[activeTab];
+
+  return (
+    <div className="relative">
+      <motion.div
+        key={activeTab}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="bg-zinc-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-sm"
+      >
+        <div className="flex flex-wrap gap-4 mb-12">
+          {projects.map((p, i) => (
+            <button
+              key={p.id}
+              onClick={() => setActiveTab(i)}
+              className={`px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 border ${
+                activeTab === i 
+                  ? "bg-red-600 border-red-600 text-white shadow-[0_0_20px_rgba(220,38,38,0.4)]" 
+                  : "bg-zinc-900 border-white/10 text-zinc-400 hover:border-white/30"
+              }`}
+            >
+              {p.category}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <h3 className="text-4xl font-black text-white mb-4 leading-tight">{current.title}</h3>
+              <p className="text-xl text-zinc-400 mb-8 italic border-l-4 border-red-600 pl-6 py-2">
+                "{current.testimonial}"
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-10">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="text-red-500 font-bold text-xs uppercase tracking-widest mb-3">The Challenge</p>
+                <p className="text-zinc-300 text-sm leading-relaxed">{current.challenge}</p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <p className="text-green-500 font-bold text-xs uppercase tracking-widest mb-3">The Solution</p>
+                <p className="text-zinc-300 text-sm leading-relaxed">{current.solution}</p>
+              </motion.div>
+            </div>
+
+            <div className="mt-12">
+              <p className="text-white font-bold text-sm uppercase tracking-widest mb-6 px-1">Production Workflow</p>
+              <ul className="grid sm:grid-cols-2 gap-4">
+                {current.steps.map((step, i) => (
+                  <li key={i} className="flex items-center gap-3 text-white text-sm bg-black/40 p-3 rounded-xl border border-white/5">
+                    <CheckCircle2 className="text-red-600 shrink-0" size={18} />
+                    {step}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-12 pt-10 border-t border-white/5">
+              <div className="flex flex-wrap gap-8">
+                {current.metrics.map((m, i) => (
+                  <div key={i} className="flex flex-col">
+                    <div className="flex items-center gap-2 text-red-500 mb-1">
+                      {m.icon}
+                      <span className="text-[10px] font-black uppercase tracking-tighter">{m.label}</span>
+                    </div>
+                    <span className="text-3xl font-black text-white">{m.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <a
+              href={current.videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl relative group ring-1 ring-white/10 block"
+            >
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <motion.div 
+                  whileHover={{ scale: 1.1 }}
+                  className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(220,38,38,0.5)]"
+                >
+                  <Play fill="white" size={32} />
+                </motion.div>
+              </div>
+              <img
+                src={current.image}
+                className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-all duration-700"
+                alt={current.title}
+              />
+              <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 text-[10px] font-bold text-white uppercase tracking-widest">
+                WATCH ON YOUTUBE
+              </div>
+            </a>
+
+            <div className="grid grid-cols-3 gap-4">
+              {current.frames.map((src, i) => (
+                <a key={i} href={current.videoUrl} target="_blank" rel="noopener noreferrer" className="aspect-video bg-zinc-800 rounded-xl overflow-hidden border border-white/5 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer block">
+                  <img 
+                    src={src} 
+                    className="w-full h-full object-cover"
+                    alt={`Scene ${i + 1}`}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -440,7 +629,7 @@ const Contact = () => {
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform"><Mail className="text-black" /></div>
                   <div>
                     <p className="text-zinc-500 text-xs font-bold uppercase">Email</p>
-                    <p className="text-white font-bold group-hover:text-red-500 transition-colors">contact@nineash.com</p>
+                    <p className="text-white font-bold group-hover:text-red-500 transition-colors">nainesh.rawat221@gmail.com</p>
                   </div>
                 </div>
               </div>
