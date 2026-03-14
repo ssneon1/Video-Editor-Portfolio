@@ -426,12 +426,11 @@ const Contact = () => (
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-zinc-500 uppercase px-2">Project Type</label>
-              <select title="Project Type" className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors appearance-none">
-                <option>Gaming Montage</option>
-                <option>YouTube Long-form</option>
-                <option>Stream Highlights</option>
-                <option>Short-Form/Reels</option>
-              </select>
+              <input 
+                type="text" 
+                className="w-full bg-black border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-red-600 transition-colors" 
+                placeholder="e.g. Gaming Montage, YouTube Script" 
+              />
             </div>
             <div className="space-y-2">
               <label className="text-xs font-bold text-zinc-500 uppercase px-2">Message</label>
